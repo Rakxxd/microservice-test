@@ -6,10 +6,10 @@ services:
     restart: always
     environment:
       POSTGRES_USER: rakesh
-      POSTGRES_PASSWORD: example
-      POSTGRES_DB: endgame
+      POSTGRES_PASSWORD: ranjan
+      POSTGRES_DB: user
     volumes:
-      - dbvolume:/var/lib/postgresql/data
+      - dbvolume:/usr/postgresql/newdata
     
   adminer:
     image: adminer
@@ -18,7 +18,7 @@ services:
       - 9090:8080
 
   backend:
-    image: ranrakes/endgamebackend:v1
+    image:  ranrakes/endgame:v1
     environment:
       DB_USER: rakesh
       DB_PASS: example
@@ -26,4 +26,5 @@ services:
       DB_HOST: db
     links:
       - db
-
+volumes:
+  dbvolume: 
