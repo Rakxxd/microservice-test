@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: rakesh
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: endgame
+    volumes:
+      - dbvolume:/var/lib/postgresql/data
+    
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9090:8080
+
+  backend:
+    image: ranrakes/endgamebackend:v1
+    environment:
+      DB_USER: rakesh
+      DB_PASS: example
+      DB: endgame
+      DB_HOST: db
+    links:
+      - db
+
