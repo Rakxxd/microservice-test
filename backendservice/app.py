@@ -51,6 +51,9 @@ def load_reviews():
 def homeview():
     return render_template("index.html")
 
+@app.route("/rply",methods=["POST","GET"])
+def viewrply():
+    return {"success":True}
 
 @app.route("/reviews/add",methods=["POST"])
 def addreview():
